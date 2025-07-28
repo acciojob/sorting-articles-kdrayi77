@@ -1,12 +1,73 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <title>Alphabetical Article Sorter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470');
+      background-size: cover;
+      background-position: center;
+      color: black;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      text-shadow: 1px 1px 3px #000;
+      color: white;
+    }
+
+    ul#band {
+      list-style-type: square;
+      list-style-position: inside;
+      margin: 20px auto;
+      padding: 0;
+      width: 70%;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+    }
+
+    li {
+      text-align: left;
+      margin: 10px 20px;
+      padding: 20px;
+      font-size: 1.1em;
+      color: black;
+      background-color: white;
+      border-radius: 10px;
+    }
+  </style>
 </head>
+<body>
+  <ul id="band"></ul>
 
-<body style="background-image:url('C:\Users\91628\Desktop\javaScript/BC.png');">
+  <script>
+    const bands = [
+      'The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil',
+      'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State',
+      'We Came as Romans', 'Counterparts', 'Oh, Sleeper',
+      'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'
+    ];
+
+    function stripArticle(name) {
+      return name.replace(/^(a|an|the)\s+/i, '').trim();
+    }
+
+    const sortedBands = bands.slice().sort((a, b) => {
+      const nameA = stripArticle(a).toLowerCase();
+      const nameB = stripArticle(b).toLowerCase();
+      return nameA.localeCompare(nameB);
+    });
+
+    const bandList = document.getElementById('band');
+    sortedBands.forEach(band => {
+      const li = document.createElement('li');
+      li.textContent = band;
+      bandList.appendChild(li);
+    });
+  </script>
 </body>
-
 </html>
